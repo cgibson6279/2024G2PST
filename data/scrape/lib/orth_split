@@ -4,11 +4,11 @@
 
  main() {
      # ABJAD
-     python data/scrape/lib/create_orth_dataset.py -orth=abjad
+     python3 data/scrape/lib/create_orth_dataset.py -orth=abjad
      # CYRLLIC
-     python data/scrape/lib/create_orth_dataset.py -orth=cyrillic
+     python3 data/scrape/lib/create_orth_dataset.py -orth=cyrillic
      # LATIN
-     python data/scrape/lib/create_orth_dataset.py -orth=latin
+     python3 data/scrape/lib/create_orth_dataset.py -orth=latin
  }
 
  main

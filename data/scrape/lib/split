@@ -4,47 +4,59 @@
 
 main() {
     # SPLIT URD
-    python data/scrape/lib/split.py \
+    python3 data/scrape/lib/split.py \
     --infile=data/scrape/tsv/abjad/urd/urd_gold.tsv --language=urd -clean=y
     # SPLIT FAS
-    python data/scrape/lib/split.py \
+    python3 data/scrape/lib/split.py \
     --infile=data/scrape/tsv/abjad/fas/fas_gold.tsv --language=fas -clean=y
     # SPLIT ARA
-    python data/scrape/lib/split.py \
+    python3 data/scrape/lib/split.py \
     --infile=data/scrape/tsv/abjad/ara/ara_gold.tsv --language=ara
     # SPLIT PUS
-    python data/scrape/lib/split.py \
+    python3 data/scrape/lib/split.py \
     --infile=data/scrape/tsv/abjad/pus/pus_gold.tsv --language=pus
     # SPLIT BUL
-    python data/scrape/lib/split.py \
+    python3 data/scrape/lib/split.py \
     --infile=data/scrape/tsv/cyrillic/bul/raw/bul.tsv --language=bul -dedupe=y -clean=y
     # SPLIT HBS
-    # python data/scrape/lib/split.py \
-    # --infile=data/scrape/tsv/cyrillic/hbs/raw/hbs.tsv --language=hbs -dedupe=y
+    python3 data/scrape/lib/split.py \
+    --infile=data/scrape/tsv/latin/hbs/raw/hbs.tsv --language=hbs -dedupe=y
     # SPLIT MKD
-    python data/scrape/lib/split.py \
+    python3 data/scrape/lib/split.py \
     --infile=data/scrape/tsv/cyrillic/mkd/raw/mkd.tsv --language=mkd -dedupe=y -clean=y
     # SPLIT RUS
-    python data/scrape/lib/split.py \
+    python3 data/scrape/lib/split.py \
     --infile=data/scrape/tsv/cyrillic/rus/raw/rus.tsv --language=rus -dedupe=y -clean=y
     # SPLIT UKR
-    python data/scrape/lib/split.py \
+    python3 data/scrape/lib/split.py \
     --infile=data/scrape/tsv/cyrillic/ukr/raw/ukr.tsv --language=ukr -dedupe=y -clean=y
     # SPLIT ENG
-    python data/scrape/lib/split.py \
+    python3 data/scrape/lib/split.py \
     --infile=data/scrape/tsv/latin/eng/raw/eng.tsv --language=eng -dedupe=y
-    # SPLIT GLE
-    # python data/scrape/lib/split.py \
-    # --infile=data/scrape/tsv/latin/gle/raw/gle.tsv --language=gle -dedupe=y
     # SPLIT IND
-    python data/scrape/lib/split.py \
+    python3 data/scrape/lib/split.py \
     --infile=data/scrape/tsv/latin/ind/raw/ind.tsv --language=ind -dedupe=y
     # SPLIT SPA
-    python data/scrape/lib/split.py \
+    python3 data/scrape/lib/split.py \
     --infile=data/scrape/tsv/latin/spa/raw/spa.tsv --language=spa -dedupe=y
     # SPLIT TGL
-    python data/scrape/lib/split.py \
+    python3 data/scrape/lib/split.py \
     --infile=data/scrape/tsv/latin/tgl/raw/tgl.tsv --language=tgl -dedupe=y
+    # SPLIT MON
+    python3 data/scrape/lib/split.py \
+    --infile=data/scrape/tsv/latin/mon/raw/mon.tsv --language=mon -dedupe=y
+    # SPLIT RON
+    python3 data/scrape/lib/split.py \
+    --infile=data/scrape/tsv/cyrillic/ron/raw/ron.tsv --language=ron -dedupe=y
+    # SPLIT HUN
+    python3 data/scrape/lib/split.py \
+    --infile=data/scrape/tsv/cyrillic/hun/raw/hun.tsv --language=hun -dedupe=y
+    # SPLIT HEB
+    python3 data/scrape/lib/split.py \
+    --infile=data/scrape/tsv/abjad/heb/raw/heb.tsv --language=heb -dedupe=y
+    # SPLIT AII
+    python3 data/scrape/lib/split.py \
+    --infile=data/scrape/tsv/abjad/aii/raw/aii.tsv --language=aii -dedupe=y
 }
 
 main

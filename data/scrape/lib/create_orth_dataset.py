@@ -5,6 +5,7 @@ import os
 import argparse
 import glob
 
+from sklearn.utils import shuffle
 import split
 import pandas as pd
 
@@ -27,7 +28,7 @@ def join_datasets(glob_file_paths: List[str], outpath: str) -> pd.DataFrame:
             dfs.append(df)
     # Concatenate Datasets
     data = pd.concat(dfs)
-    data.sample(frac=1)
+    data = shuffle(data)
     return data
 
 def main(args):

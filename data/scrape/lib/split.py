@@ -97,7 +97,18 @@ def main(args):
                 assert len(d.columns) == 2
                 assert 'source' in d.columns
                 assert 'target' in d.columns
-                data = d.drop_duplicates(subset=["source"]).sample(n=3000, replace=False, random_state=42)
+                try:
+                    data = d.drop_duplicates(subset=["source"]).sample(n=3000, replace=False, random_state=42)
+                except ValueError:
+                    try:
+                        data = d.drop_duplicates(subset=["source"]).sample(n=2000, replace=False, random_state=42)
+                    except ValueError:
+                        try:
+                            data = d.drop_duplicates(subset=["source"]).sample(n=1000, replace=False, random_state=42)
+                        except ValueError:
+                            data = d.drop_duplicates(subset=["source"])
+
+
     else:
          with open(args.infile, "r", encoding="utf-8") as src:
                 data = pd.read_csv(src, sep="\t").sample(n=3000, replace=False, random_state=42)

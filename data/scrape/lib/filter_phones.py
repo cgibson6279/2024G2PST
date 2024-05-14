@@ -7,6 +7,8 @@ import glob
 
 import pandas as pd
 
+from typing import List, json
+
 
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PHONES_DIR = os.path.join(ROOT_DIR, "phones")
@@ -58,6 +60,21 @@ def check_phone_set_difference(gold_phone_set: set, data_phone_set: set):
     return data_phone_set.difference(gold_phone_set)
 
 
+def join_datasets(file_paths: List[str]) -> pd.DataFrame:
+    dfs = []
+    for path in file_paths:
+        df = pd.read_csv(path, sep="\t")
+        columns = ["source", "target"]
+        df.columns = columns
+        assert len(df.columns) == 2
+        assert 'source' in df.columns
+        assert 'target' in df.columns
+        dfs.append(df)
+    # Concatenate Datasets
+    data = pd.concat(dfs)
+    return data
+
+
 def main(args):
     phones_path = os.path.join(PHONES_DIR, f"{args.lang}.txt")
     lang_path = find_directory_in_subdirectories(TSV_DIR, args.lang)
@@ -66,17 +83,17 @@ def main(args):
         phones = src.readlines()
         phones_set = set([phone.rstrip() for phone in phones])
     print(f"gold phones: {phones_set}")
-    #Process Train datasets.
+    #Process Join Sets.
     train_path = f"{lang_path}/train/{args.lang}_train.tsv"
-    train_data = pd.read_csv(train_path, sep="\t")
-    train_phone_set = _create_phones_inventory(train_data)
-    print(f"data phones: {train_phone_set}")
-    phone_dif = check_phone_set_difference(phones_set, train_phone_set)
-    print(f"set difference: {phone_dif}")
-    # Process Val datasets.
     val_path = f"{lang_path}/val/{args.lang}_val.tsv"
     test_path = f"{lang_path}/test/{args.lang}_test.tsv"
-    # Read tsv files.
+    datasets = [train_path, val_path, test_path]
+    language_dataset = join_datasets(datasets)
+    #train_data = pd.read_csv(train_path, sep="\t")
+    language_phone_set = _create_phones_inventory(language_dataset)
+    print(f"data phones: {language_phone_set}")
+    phone_dif = check_phone_set_difference(phones_set, language_phone_set)
+    print(f"set difference: {phone_dif}")
 
 
 
